@@ -1,2 +1,1 @@
-# RIoT
-Restful Internet Of Things
+## RIoT
