@@ -1,5 +1,5 @@
 <?php
-Route::group(['middleware' => 'dht.router'], function ()
+Route::group(['middleware' => 'riot.router'], function ()
 {
     Route::get('pipes', 'PipesController@index');
 }
