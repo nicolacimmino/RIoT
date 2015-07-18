@@ -23,13 +23,14 @@ class RiotRouter
      */
     public function handle($request, Closure $next)
     {
-        $id = $request->get("id");
-        if ($id)
+        $pipe = $request->pipe;
+
+        if ($pipe)
         {
-            $finalServer = $this->resolver->resolve($id);
+            $finalServer = $this->resolver->resolve($pipe);
             if ($finalServer != $request->getHttpHost())
             {
-                return redirect(str_replace($request->getHttpHost(), $finalServer, $request->getUri()), 301);
+                return redirect(str_replace($request->getHttpHost(), $finalServer, $request->getUri()), 307);
             }
         }
         return $next($request);

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\ApiController;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Response;
 
 class PipesController extends ApiController
@@ -15,9 +16,26 @@ class PipesController extends ApiController
      *
      * @return Response
      */
-    public function index(Request $request)
+    public function show(Request $request, $pipe)
     {
-        return  json_encode($request->getHttpHost() );
+        return json_encode([
+                "pipe" => $pipe,
+                "value" => Cache::get("Q_" . $pipe),
+                "server" => $request->getHttpHost(),
+            ]
+        );
+    }
+
+    public function store(Request $request, $pipe)
+    {
+        Cache::put("Q_" . $pipe, $request->get('value'), 10);
+
+        return json_encode([
+                "pipe" => $pipe,
+                "value" => Cache::get("Q_" . $pipe),
+                "server" => $request->getHttpHost(),
+            ]
+        );
     }
 
 

@@ -21,7 +21,6 @@ class RiotResolverServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        echo "resover register";
         $this->app->singleton('App\RiotResolver', function ($app) {
             return new RiotResolver();
         });
