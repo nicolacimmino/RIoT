@@ -34,12 +34,17 @@ class PipesController extends ApiController
      */
     public function show(Request $request, $pipe)
     {
-        return json_encode([
+        if($request->get("web"))
+        {
+            return view("pipe", (array)json_decode(Cache::get("Q_" . $pipe)));
+        }
+
+        return response(json_encode([
                 "pipe" => $pipe,
-                "value" => Cache::get("Q_" . $pipe),
+                "value" => json_decode(Cache::get("Q_" . $pipe)),
                 "server" => $request->getHttpHost(),
             ]
-        );
+        ))->header("Content-Type", "text/json");
     }
 
     /**
@@ -68,14 +73,17 @@ class PipesController extends ApiController
      */
     public function store(Request $request, $pipe)
     {
-        Cache::put("Q_" . $pipe, $request->get('value'), 10);
+        $value = json_decode($request->get('value'));
+        $value->timestamp = gmdate("Y-m-d H:i:s");
 
-        return json_encode([
+        Cache::put("Q_" . $pipe, json_encode($value) , 10);
+
+        return response(json_encode([
                 "pipe" => $pipe,
-                "value" => Cache::get("Q_" . $pipe),
+                "value" => json_decode(Cache::get("Q_" . $pipe)),
                 "server" => $request->getHttpHost(),
             ]
-        );
+        ))->header("Content-Type", "text/json");
     }
 
 

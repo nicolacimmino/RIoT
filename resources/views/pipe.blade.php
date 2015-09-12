@@ -1,9 +1,15 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Laravel</title>
 
-        <link href="//fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+    <head>
+        <title>Pipe</title>
+
+        <style>
+            @font-face {
+                font-family:"digital-7mono";
+                src: url("/fonts/digital-7mono.ttf")
+            }
+        </style>
 
         <style>
             html, body {
@@ -16,7 +22,6 @@
                 width: 100%;
                 display: table;
                 font-weight: 100;
-                font-family: 'Lato';
             }
 
             .container {
@@ -34,11 +39,20 @@
                 font-size: 96px;
             }
         </style>
+        <meta http-equiv="refresh" content="10">
     </head>
     <body>
-        <div class="container">
-            <div class="content">
-                <div class="title">Laravel 5</div>
+        <div class="container" style="font-family: 'digital-7mono';font-size: 300%">
+            <div class="content" style="text-align: right">
+                {{$temp}} C
+            </div>
+            <div width="10%">&nbsp;</div>
+            <div class="content" style="text-align: right">
+                {{$hum}} %
+            </div>
+            <div width="10%">&nbsp;</div>
+            <div class="content" style="text-align: right">
+                {{$bat}} V
             </div>
         </div>
     </body>

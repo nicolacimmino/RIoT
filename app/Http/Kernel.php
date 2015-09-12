@@ -28,6 +28,6 @@ class Kernel extends HttpKernel
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
-        'riot.router' => \App\Http\Middleware\RiotRouter::class
+        'riot.router' => \App\Http\Middleware\RIoT\RiotRouter::class
     ];
 }

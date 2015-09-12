@@ -1,20 +1,12 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: nicola
- * Date: 18/07/2015
- * Time: 14:20
- */
-
-namespace App;
-
+<?php namespace App\RIoT;
 
 class RiotResolver {
 
     private $servers = [
-        'iothttp1.app',
-        'iothttp2.app',
-        'iothttp3.app'
+        'riot.nicolacimmino.com'
+        //'iothttp1.app',
+        //'iothttp2.app',
+        //'iothttp3.app'
     ];
 
     public function resolve($serviceId)

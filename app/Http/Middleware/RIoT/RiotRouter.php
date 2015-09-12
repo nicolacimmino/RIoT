@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Middleware;
+namespace App\Http\Middleware\RIoT;
 
-use App\RiotResolver;
+use App\RIoT\RiotResolver;
 use Closure;
 
 class RiotRouter
