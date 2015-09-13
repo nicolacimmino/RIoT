@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="45d3ce92-712d-413c-b5ae-ef1431cc8a14" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\Users\nicola\Documents\git\RIoT\.idea\workspace.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
     </list>
     <ignored path="iothttp.iws" />
@@ -454,7 +454,13 @@
       <option name="project" value="LOCAL" />
       <updated>1442091172868</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Delete file">
+      <created>1442171847791</created>
+      <option name="number" value="00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1442171847791</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -532,7 +538,8 @@
     <MESSAGE value="Change URI schema for pipe and cache implementation" />
     <MESSAGE value="Added .idea to ignore" />
     <MESSAGE value="Proof of conecept, tests, some changes to get it running on server" />
-    <option name="LAST_COMMIT_MESSAGE" value="Proof of conecept, tests, some changes to get it running on server" />
+    <MESSAGE value="Delete file" />
+    <option name="LAST_COMMIT_MESSAGE" value="Delete file" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
