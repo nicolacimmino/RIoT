@@ -1,7 +1,7 @@
 <?php
 Route::group(['middleware' => 'riot.router'], function ()
 {
-    Route::get('pipes/{pipe}', 'PipesController@show');
-    Route::post('pipes/{pipe}', 'PipesController@store');
+    Route::get('slots/{slot}', 'SlotsController@show');
+    Route::post('slots/{slot}', 'SlotsController@store');
 }
 );

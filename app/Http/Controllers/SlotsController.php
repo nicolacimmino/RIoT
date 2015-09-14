@@ -1,13 +1,13 @@
 <?php namespace App\Http\Controllers;
 
+use App\RIoT\MessagingResources\Slot;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Response;
 
 
-class PipesController extends ApiController
+class SlotsController extends ApiController
 {
     /**
      * @api {get} /pipes/:id Read the pipe content
@@ -30,21 +30,22 @@ class PipesController extends ApiController
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
+     * @param $slotId
      * @return Response
      */
-    public function show(Request $request, $pipe)
+    public function show(Request $request, $slotId)
     {
+        // TODO: create middleware to inject here already proper initialized object
+        $slot = new Slot();
+        $slot->setResourceId($slotId);
+
         if($request->get("web"))
         {
-            return view("pipe", (array)json_decode(Cache::get("Q_" . $pipe)));
+            return view("pipe", (array)json_decode($slot->getMessage()));
         }
 
-        return response(json_encode([
-                "pipe" => $pipe,
-                "value" => json_decode(Cache::get("Q_" . $pipe)),
-                "server" => $request->getHttpHost(),
-            ]
-        ))->header("Content-Type", "text/json");
+        return response($slot->getMessage())->header("Content-Type", "text/json");
     }
 
     /**
@@ -68,22 +69,19 @@ class PipesController extends ApiController
      */
     /**
      * @param Request $request
-     * @param $pipe
+     * @param $slotId
      * @return string
+     * @internal param $pipe
      */
-    public function store(Request $request, $pipe)
+    public function store(Request $request, $slotId)
     {
-        $value = json_decode($request->get('value'));
-        $value->timestamp = gmdate("Y-m-d H:i:s");
+        $value = $request->get('value');
 
-        Cache::put("Q_" . $pipe, json_encode($value) , 10);
+        $slot = new Slot();
+        $slot->setResourceId($slotId);
+        $slot->addMessage($value);
 
-        return response(json_encode([
-                "pipe" => $pipe,
-                "value" => json_decode(Cache::get("Q_" . $pipe)),
-                "server" => $request->getHttpHost(),
-            ]
-        ))->header("Content-Type", "text/json");
+        return response()->header("Content-Type", "text/json");
     }
 
 
