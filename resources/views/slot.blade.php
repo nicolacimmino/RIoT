@@ -44,15 +44,19 @@
     <body>
         <div class="container" style="font-family: 'digital-7mono';font-size: 300%">
             <div class="content" style="text-align: right">
-                {{$temp}} C
+                {{@$temp?:"--.-"}} C
             </div>
             <div width="10%">&nbsp;</div>
             <div class="content" style="text-align: right">
-                {{$hum}} %
+                {{@$hum?:"---"}} %
             </div>
             <div width="10%">&nbsp;</div>
             <div class="content" style="text-align: right">
-                {{$bat}} V
+                {{@$bat?:"-.--"}} V
+            </div>
+            <div width="10%">&nbsp;</div>
+            <div class="content" style="text-align: right;font-size: 33%">
+                {{@$timestamp?:"---------- --:--:--"}} UTC
             </div>
         </div>
     </body>

@@ -42,7 +42,7 @@ class SlotsController extends ApiController
 
         if($request->get("web"))
         {
-            return view("pipe", (array)json_decode($slot->getMessage()));
+            return view("slot", (array)json_decode($slot->getMessage()));
         }
 
         return response($slot->getMessage())->header("Content-Type", "text/json");
