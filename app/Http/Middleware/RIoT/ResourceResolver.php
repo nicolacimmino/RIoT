@@ -3,6 +3,7 @@
 use App\RIoT\MessagingResources\MessagingResource;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class ResourceResolver
 {
@@ -24,7 +25,11 @@ class ResourceResolver
 
             $resourceInstance = new $resourceClassName($resourceId);
 
-            $request->route()->setParameter($parameterName, $resourceInstance);
+            App::singleton(MessagingResource::class, function () use ($resourceInstance)
+            {
+                return $resourceInstance;
+            });
+            //$request->route()->setParameter($parameterName, $resourceInstance);
         }
 
         return $next($request);

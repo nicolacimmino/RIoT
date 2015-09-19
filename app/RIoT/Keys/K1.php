@@ -1,8 +1,8 @@
-<?php namespace App\RIoT;
+<?php namespace App\RIoT\Keys;
 
-use app\Exceptions\InvalidKeyException;
+use App\Exceptions\InvalidKeyException;
 
-class K1
+class K1 extends K
 {
 
     private $k1;
@@ -33,6 +33,6 @@ class K1
      */
     public function isValidFor($resource)
     {
-        return hash("sha256", $resource) === $this->k1;
+        return hash("sha256", $this->k1) === $resource;
     }
 }

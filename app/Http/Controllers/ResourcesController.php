@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\RIoT\MessagingResources\MessagingResource;
 use App\RIoT\MessagingResources\Slot;
 use Illuminate\Http\Request;
 
@@ -7,7 +8,7 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\Response;
 
 
-class SlotsController extends ApiController
+class ResourcesController extends ApiController
 {
     /**
      * @api {get} /pipes/:id Read the pipe content
@@ -31,19 +32,19 @@ class SlotsController extends ApiController
      * Display a listing of the resource.
      *
      * @param Request $request
-     * @param Slot $slot
+     * @param Slot $resource
      * @return Response
      * @internal param $slotId
      */
-    public function show(Request $request, Slot $slot)
+    public function show(Request $request, MessagingResource $resource)
     {
 
         if($request->get("web"))
         {
-            return view("slot", (array)json_decode($slot->getMessage()));
+            return view("slot", (array)json_decode($resource->getMessage()));
         }
 
-        return response($slot->getMessage())->header("Content-Type", "text/json");
+        return response($resource->getMessage())->header("Content-Type", "text/json");
     }
 
     /**
@@ -71,11 +72,11 @@ class SlotsController extends ApiController
      * @return string
      * @internal param $pipe
      */
-    public function store(Request $request, Slot $slot)
+    public function store(Request $request, MessagingResource $resource)
     {
         $value = $request->get('value');
 
-        $slot->addMessage($value);
+        $resource->addMessage($value);
 
         return response("")->header("Content-Type", "text/json");
     }

@@ -2,12 +2,20 @@
 
 Route::group(
     ['prefix'     => 'slots',
-     'middleware' => ['riot.router', 'riot.resource']],
+     'middleware' => ['riot.router', 'riot.resource', 'riot.keys']],
     function ()
     {
-        Route::get('{slot}', 'SlotsController@show');
-        Route::post('{slot}', 'SlotsController@store');
-        Route::get('{slot}/challenges', 'ChallengesController@show');
+        Route::get('{slot}', 'ResourcesController@show');
+        Route::post('{slot}', 'ResourcesController@store');
+
+        // These routes require K1
+        Route::group(
+             ['middleware' => ['riot.k1']],
+            function ()
+            {
+                Route::get('{slot}/keys/', 'KeysController@show');
+            }
+        );
     }
 );
 

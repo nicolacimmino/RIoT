@@ -39,6 +39,16 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
+        if(is_subclass_of($e, RIoTException::class))
+        {
+            return response(json_encode(
+                [
+                    "status" => "error",
+                    "error"  => $e->getMessage(),
+                ]
+            ))->header("Content-Type", "text/json");
+        }
+
         return parent::render($request, $e);
     }
 }

@@ -192,6 +192,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
         'Slot'      => App\RIoT\MessagingResources\Slot::class,
+        'K1'        => App\RIoT\Keys\K1::class,
 
     ],
 
