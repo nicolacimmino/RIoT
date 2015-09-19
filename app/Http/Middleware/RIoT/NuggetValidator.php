@@ -1,6 +1,6 @@
 <?php namespace App\Http\Middleware\RIoT;
 
-use app\Exceptions\InvalidNuggetException;
+use Closure;
 use Symfony\Component\HttpFoundation\Request;
 
 abstract class NuggetValidator
@@ -8,11 +8,12 @@ abstract class NuggetValidator
 
     /**
      * @param Request $request
+     * @param Closure $next
      * @param string $nuggetParameter
      * @param string $dataParameter
-     * @throws InvalidNuggetException
+     * @return
      */
-    public function handle(Request $request, $nuggetParameter = "nugget", $dataParameter = "data")
+    public function handle(Request $request, Closure $next, $nuggetParameter = "nugget", $dataParameter = "data")
     {
         $nugget = $request->get($nuggetParameter);
         $data = $request->get($dataParameter);
@@ -20,6 +21,7 @@ abstract class NuggetValidator
         $nugget = new Nugget();
         $nugget->validate($nugget, $data);
 
+        return $next($request);
     }
 
     /**

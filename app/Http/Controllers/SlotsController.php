@@ -31,14 +31,12 @@ class SlotsController extends ApiController
      * Display a listing of the resource.
      *
      * @param Request $request
-     * @param $slotId
+     * @param Slot $slot
      * @return Response
+     * @internal param $slotId
      */
-    public function show(Request $request, $slotId)
+    public function show(Request $request, Slot $slot)
     {
-        // TODO: create middleware to inject here already proper initialized object
-        $slot = new Slot();
-        $slot->setResourceId($slotId);
 
         if($request->get("web"))
         {
@@ -73,15 +71,13 @@ class SlotsController extends ApiController
      * @return string
      * @internal param $pipe
      */
-    public function store(Request $request, $slotId)
+    public function store(Request $request, Slot $slot)
     {
         $value = $request->get('value');
 
-        $slot = new Slot();
-        $slot->setResourceId($slotId);
         $slot->addMessage($value);
 
-        return response()->header("Content-Type", "text/json");
+        return response("")->header("Content-Type", "text/json");
     }
 
 

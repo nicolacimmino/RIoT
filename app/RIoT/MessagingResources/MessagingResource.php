@@ -6,6 +6,14 @@ abstract class MessagingResource
     private $resourceId;
 
     /**
+     * @param $resourceId
+     */
+    public function __construct($resourceId = null)
+    {
+        $this->resourceId = $resourceId;
+    }
+
+    /**
      * Add a message to this resource.
      * @param $message
      * @return mixed
