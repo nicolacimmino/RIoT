@@ -1,6 +1,7 @@
 <?php namespace App\RIoT\MessagingResources;
 
 use App\Exceptions\InvalidMessageException;
+use App\Exceptions\InvalidResourceException;
 use Exception;
 
 abstract class MessagingResource
@@ -10,9 +11,15 @@ abstract class MessagingResource
 
     /**
      * @param $resourceId
+     * @throws InvalidResourceException
      */
     public function __construct($resourceId = null)
     {
+        if(strlen($resourceId) != 64)
+        {
+            throw new InvalidResourceException();
+        }
+
         $this->resourceId = $resourceId;
     }
 
@@ -90,4 +97,20 @@ abstract class MessagingResource
     {
         $this->resourceId = $resourceId;
     }
+
+    /**
+     * Peek at the next message in this resource.
+     * @return mixed
+     */
+    public function peekMessage()
+    {
+        return $this->doGetMessage();
+    }
+
+    /**
+     * Concrete implementation of peekMessage.
+     * @return mixed
+     */
+    public abstract function doPeekMessage();
+
 }

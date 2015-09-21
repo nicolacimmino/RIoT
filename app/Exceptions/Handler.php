@@ -46,7 +46,7 @@ class Handler extends ExceptionHandler
                     "status" => "error",
                     "error"  => $e->getMessage(),
                 ]
-            ))->header("Content-Type", "text/json");
+            ), 401)->header("Content-Type", "text/json");
         }
 
         return parent::render($request, $e);

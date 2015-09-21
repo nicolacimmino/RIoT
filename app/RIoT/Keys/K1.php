@@ -45,6 +45,7 @@ class K1 extends K
         {
             throw new InvalidResourceException();
         }
+
         return hash("sha256", $this->k1) === $resource;
     }
 }

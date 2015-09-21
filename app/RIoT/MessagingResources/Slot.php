@@ -31,4 +31,14 @@ class Slot extends MessagingResource
 
         return $jsonMessage;
     }
+
+    /**
+     * Concrete implementation of peekMessage.
+     * @return mixed
+     */
+    public function doPeekMessage()
+    {
+        // No difference for a slot between peek and get.
+        return $this->doGetMessage();
+    }
 }

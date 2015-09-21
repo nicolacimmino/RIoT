@@ -68,8 +68,10 @@ class ResourcesController extends ApiController
      */
     /**
      * @param Request $request
-     * @param $slotId
+     * @param MessagingResource $resource
      * @return string
+     * @throws \App\Exceptions\InvalidMessageException
+     * @internal param $slotId
      * @internal param $pipe
      */
     public function store(Request $request, MessagingResource $resource)
@@ -78,7 +80,8 @@ class ResourcesController extends ApiController
 
         $resource->addMessage($value);
 
-        return response("")->header("Content-Type", "text/json");
+        return response($resource->peekMessage(), 201)
+            ->header("Content-Type", "text/json");
     }
 
 
