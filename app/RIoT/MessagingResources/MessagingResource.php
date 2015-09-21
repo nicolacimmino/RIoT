@@ -1,5 +1,8 @@
 <?php namespace App\RIoT\MessagingResources;
 
+use App\Exceptions\InvalidMessageException;
+use Exception;
+
 abstract class MessagingResource
 {
 
@@ -17,13 +20,20 @@ abstract class MessagingResource
      * Add a message to this resource.
      * @param $message
      * @return mixed
+     * @throws InvalidMessageException
      */
     public function addMessage($message)
     {
-        $value = json_decode($message);
-        $value->timestamp = gmdate("Y-m-d H:i:s");
-        $jsonValue = json_encode($value);
-
+        try
+        {
+            $value = json_decode($message);
+            $value->timestamp = gmdate("Y-m-d H:i:s");
+            $jsonValue = json_encode($value);
+        }
+        catch(Exception $e)
+        {
+            throw new InvalidMessageException();
+        }
         return $this->doAddMessage($jsonValue);
     }
 
