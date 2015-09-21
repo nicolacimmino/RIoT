@@ -1,5 +1,6 @@
 <?php namespace App\Exceptions;
 
-class InvalidNuggetException extends RIoTException {
+class InvalidNuggetException extends RIoTException
+{
 
 }
