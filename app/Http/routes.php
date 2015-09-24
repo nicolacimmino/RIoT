@@ -13,7 +13,8 @@ Route::group(
              ['middleware' => ['riot.k1']],
             function ()
             {
-                Route::get('{slot}/keys/', 'KeysController@show');
+                Route::get('{slot}/keys/k2', 'KeysController@retrieveK2');
+                Route::put('{slot}/keys/k2', 'KeysController@installK2');
             }
         );
     }
