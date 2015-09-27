@@ -15,7 +15,7 @@ class SlotsKeysTest extends \TestCase
         $this->assertContains("text/json", $response->headers->get("Content-Type"));
         $value = json_decode($response->getContent());
         $this->assertEquals($value->status, "error");
-        $this->assertEquals($value->error, "INVALID_KEY");
+        $this->assertEquals($value->error, "UNAUTHORIZED");
 
         // K1 is a invalid.
         $response = $this->call('GET',

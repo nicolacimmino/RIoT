@@ -10,7 +10,7 @@ Route::group(
 
         // These routes require K1
         Route::group(
-             ['middleware' => ['riot.k1']],
+             ['middleware' => ['riot.k1auth']],
             function ()
             {
                 Route::get('{slot}/keys/k2', 'KeysController@retrieveK2');

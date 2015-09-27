@@ -1,12 +1,9 @@
-<?php
+<?php namespace App\Http;
 
-namespace App\Http;
-
-use App\Http\Middleware\RIoT\K1Validator;
+use App\Http\Middleware\RIoT\K1ResourceAuthorizationMiddleware;
 use App\Http\Middleware\RIoT\KeysResolver;
 use App\Http\Middleware\RIoT\ResourceResolver;
 use App\Http\Middleware\RIoT\RiotRouter;
-use App\RIoT\Keys\K1;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -33,6 +30,6 @@ class Kernel extends HttpKernel
         'riot.router'   => RiotRouter::class,
         'riot.resource' => ResourceResolver::class,
         'riot.keys'     => KeysResolver::class,
-        'riot.k1'       => K1Validator::class,
+        'riot.k1auth'       => K1ResourceAuthorizationMiddleware::class,
     ];
 }
